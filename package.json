@@ -7,11 +7,13 @@
     "react-dom": "next",
     "react-scripts": "2.1.2"
   },
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "DEV_URL=http://localhost:3000 concurrently 'yarn start' 'wait-on http://localhost:3000 && electron .'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +23,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.0",
+    "wait-on": "^3.2.0"
+  }
 }
