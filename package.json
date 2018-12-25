@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "next",
     "react-dom": "next",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "rmwc": "^4.0.1"
   },
   "homepage": "./",
   "scripts": {
