@@ -2,6 +2,7 @@
   "name": "ps-classic-utility",
   "version": "0.1.0",
   "private": true,
+  "productName": "PS1 Game Manager",
   "dependencies": {
     "react": "next",
     "react-dom": "next",
@@ -14,7 +15,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "DEV_URL=http://localhost:3000 concurrently 'yarn start' 'wait-on http://localhost:3000 && electron .'"
+    "electron-dev": "DEV_URL=http://localhost:3000 concurrently 'yarn start' 'wait-on http://localhost:3000 && electron .'",
+    "electron": "yarn build && electron ./main.js",
+    "package": "yarn build && electron-packager . --ignore='(src|node_modules|yarn.lock|README.md|.gitignore)'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,6 +31,7 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "electron": "^4.0.0",
+    "electron-packager": "^13.0.1",
     "wait-on": "^3.2.0"
   }
 }
