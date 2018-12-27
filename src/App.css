@@ -1,7 +1,12 @@
-.app {
+.getUsbStickPath {
   display: flex;
   height: 100vh;
   width: 100vw;
   align-items: center;
+  justify-content: center;
+}
+
+.gamesList {
+  display: flex;
   justify-content: center;
 }
