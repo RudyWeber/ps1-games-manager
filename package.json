@@ -1,8 +1,8 @@
 {
-  "name": "ps-classic-utility",
+  "name": "ps1-games-manager",
   "version": "0.1.0",
   "private": true,
-  "productName": "PS1 Game Manager",
+  "productName": "PS1 Games Manager",
   "dependencies": {
     "react": "next",
     "react-dom": "next",
