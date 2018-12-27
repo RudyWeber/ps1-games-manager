@@ -15,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "DEV_URL=http://localhost:3000 concurrently 'yarn start' 'wait-on http://localhost:3000 && electron .'",
+    "electron-dev": "cross-env DEV_URL=http://localhost:3000 concurrently 'yarn start' 'wait-on http://localhost:3000 && electron .'",
     "electron": "yarn build && electron ./main.js",
     "package": "yarn build && electron-packager . --ignore='(src|node_modules|yarn.lock|README.md|.gitignore)'"
   },
@@ -30,6 +30,7 @@
   ],
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
     "electron": "^4.0.0",
     "electron-packager": "^13.0.1",
     "wait-on": "^3.2.0"
