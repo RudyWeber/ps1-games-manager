@@ -37,8 +37,9 @@ const CopyFilesToUSBStick = ({
   useEffect(() => {
     // Oooh, dirty sneaky me. useEffect(async () => {}) isn't supported yet.
     (async () => {
-      const gameTitle = gameFilesPaths[0]
-        .slice(gameFilesPaths[0].lastIndexOf("/") + 1)
+      const sortedGameFilesPaths = gameFilesPaths.sort();
+      const gameTitle = sortedGameFilesPaths[0]
+        .slice(sortedGameFilesPaths[0].lastIndexOf("/") + 1)
         .slice(0, -4);
 
       const nextAvailableGameIndexNumber = await getNextAvailableGameIndexNumber(
