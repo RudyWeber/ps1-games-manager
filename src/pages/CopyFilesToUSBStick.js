@@ -68,9 +68,7 @@ const CopyFilesToUSBStick = ({
           path.join(destPath, "Game.ini"),
           `[Game]
 Discs=${gameFilesPaths
-            .filter(
-              filePath => filePath.endsWith(".bin") || filePath.endsWith(".cue")
-            )
+            .filter(filePath => filePath.endsWith(".cue"))
             .map(filePath =>
               filePath.slice(filePath.lastIndexOf("/") + 1).slice(0, -4)
             )
