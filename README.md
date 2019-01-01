@@ -17,8 +17,9 @@ When adding a game:
 ## Todo
 
 - [ ] Windows and Linux builds.
-- [ ] missing `cue` files generation for mono-track images.
-- [ ] handle multi-track files.
+- [x] missing `cue` files generation for mono-track images.
+- [x] missing `cue` files generation for multi-track images.
+- [x] handle multi-track files.
 
 ## Development
 
