@@ -14,6 +14,10 @@ When adding a game:
 - a placeholder image is created. Feel free to change it to whatever image you like.
 - a default `pcsx.cfg` file is created. You should not need to change this file.
 
+## Usage
+
+Check the [wiki page](https://github.com/RudyWeber/ps1-games-manager/wiki).
+
 ## Todo
 
 - [ ] Windows and Linux builds.
