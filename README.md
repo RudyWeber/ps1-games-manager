@@ -2,6 +2,10 @@
 
 An application to manage PS Classic games on a USB stick to use with [BleemSync](https://github.com/pathartl/BleemSync) by [Pat Hartl](https://github.com/pathartl).
 
+## Download
+
+You can get the lastest release from the [releases page](https://github.com/RudyWeber/ps1-games-manager/releases).
+
 ## Info
 
 When adding a game:
