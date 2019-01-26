@@ -4,23 +4,11 @@ import { Grid, GridCell } from "@rmwc/grid";
 
 import { pcsxcfg, placeholderImage64 } from "../config";
 
-const fs = window.require("electron").remote.require("fs");
+const fs = window.require("electron").remote.require("fs").promises;
 const path = window.require("path");
-const { promisify } = window.require("util");
-
-const promisifyAll = (module, fnNames) =>
-  fnNames.reduce(
-    (moduleP, fnName) => ({
-      ...moduleP,
-      [fnName]: promisify(module[fnName])
-    }),
-    {}
-  );
-
-const fsP = promisifyAll(fs, ["copyFile", "mkdir", "readdir", "writeFile"]);
 
 const getNextAvailableGameIndexNumber = dir =>
-  fsP
+  fs
     .readdir(path.join(dir, "Games"))
     .then(
       dirList =>
@@ -54,17 +42,17 @@ const CopyFilesToUSBStick = ({
 
       const copyGameFiles = () =>
         gameFilesPaths.map(filePath =>
-          fsP.copyFile(
+          fs.copyFile(
             filePath,
             path.join(destPath, filePath.slice(filePath.lastIndexOf("/") + 1))
           )
         );
 
       const copyPCSXConfig = () =>
-        fsP.writeFile(path.join(destPath, "pcsx.cfg"), pcsxcfg);
+        fs.writeFile(path.join(destPath, "pcsx.cfg"), pcsxcfg);
 
       const writeGameIniFile = () =>
-        fsP.writeFile(
+        fs.writeFile(
           path.join(destPath, "Game.ini"),
           `[Game]
 Discs=${gameFilesPaths
@@ -80,13 +68,13 @@ Year=1988`
         );
 
       const writePlaceholderImage = () =>
-        fsP.writeFile(
+        fs.writeFile(
           path.join(destPath, gameTitle + ".png"),
           new Buffer(placeholderImage64, "base64")
         );
 
-      await fsP.mkdir(partialDestPath);
-      await fsP.mkdir(destPath);
+      await fs.mkdir(partialDestPath);
+      await fs.mkdir(destPath);
       await Promise.all([
         ...copyGameFiles(),
         copyPCSXConfig(),
