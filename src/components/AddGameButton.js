@@ -8,7 +8,7 @@ const getGameFiles = onSelected => () => {
     filters: [
       {
         name: "PS1 files",
-        extensions: ["cue", "bin"]
+        extensions: ["bin"]
       }
     ],
     properties: ["openFile", "multiSelections"]

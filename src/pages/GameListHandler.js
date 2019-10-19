@@ -100,71 +100,6 @@ const GameListHandler = ({
     },
     [gameList]
   );
-  const generateMultiTrackCueFile = useCallback(
-    gameNumber => () => {
-      const gamePath = path.join(
-        usbStickPath,
-        "Games",
-        gameNumber.toString(),
-        "GameData"
-      );
-
-      const binList = fs
-        .readdirSync(gamePath)
-        .filter(filename => filename.endsWith(".bin"))
-        .sort();
-      const cueFilename = binList[0].replace(".bin", ".cue");
-      const cueFileContent = binList.reduce((content, currentBin, index) => {
-        if (index === 0) {
-          return `FILE "${currentBin}" BINARY
-TRACK 01 MODE2/2352
-INDEX 01 00:00:00
-`;
-        } else {
-          return (
-            content +
-            `FILE "${currentBin}" BINARY
-TRACK ${index + 1 < 10 ? "0" + (index + 1) : index + 1} AUDIO
-INDEX 00 00:00:00
-INDEX 01 00:02:00
-`
-          );
-        }
-      }, "");
-
-      fs.writeFileSync(path.join(gamePath, cueFilename), cueFileContent);
-
-      setMessage("Fichier .cue multitrack généré.");
-    },
-    [gameList]
-  );
-  const generateMultiDiscCueFile = useCallback(
-    gameNumber => () => {
-      const gamePath = path.join(
-        usbStickPath,
-        "Games",
-        gameNumber.toString(),
-        "GameData"
-      );
-
-      const binList = fs
-        .readdirSync(gamePath)
-        .filter(filename => filename.endsWith(".bin"))
-        .sort();
-      binList.forEach(currentBin => {
-        const cueFilename = currentBin.replace(".bin", ".cue");
-        const content = `FILE "${currentBin}" BINARY
-TRACK 01 MODE2/2352
-INDEX 01 00:00:00
-`;
-
-        fs.writeFileSync(path.join(gamePath, cueFilename), content);
-      });
-
-      setMessage("Fchiers .cue pour chaque disques générés.");
-    },
-    [gameList]
-  );
 
   return (
     <div className="gamesList">
@@ -179,12 +114,7 @@ INDEX 01 00:00:00
           <AddGameButton onSelected={handleNewGameFilesSelected} />
         </GridCell>
         <GridCell span="12">
-          <GameList
-            games={gameList}
-            onDelete={deleteGame}
-            onGenerateMultiDiscCueFiles={generateMultiDiscCueFile}
-            onGenerateMultiTrackCueFiles={generateMultiTrackCueFile}
-          />
+          <GameList games={gameList} onDelete={deleteGame} />
         </GridCell>
       </Grid>
     </div>

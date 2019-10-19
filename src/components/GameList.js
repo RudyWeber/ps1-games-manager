@@ -9,12 +9,7 @@ import {
 import { Typography } from "@rmwc/typography";
 import { Grid, GridCell } from "@rmwc/grid";
 
-const GameList = ({
-  games,
-  onDelete,
-  onGenerateMultiDiscCueFiles,
-  onGenerateMultiTrackCueFiles
-}) => (
+const GameList = ({ games, onDelete }) => (
   <Grid>
     {games.map(({ Title }, index) => (
       <GridCell span="4" key={Title}>
@@ -35,14 +30,6 @@ const GameList = ({
           <CardActions>
             <CardActionButtons>
               <CardAction icon="delete_outline" onClick={onDelete(index + 1)} />
-              <CardAction
-                icon="view_column"
-                onClick={onGenerateMultiDiscCueFiles(index + 1)}
-              />
-              <CardAction
-                icon="view_headline"
-                onClick={onGenerateMultiTrackCueFiles(index + 1)}
-              />
             </CardActionButtons>
           </CardActions>
         </Card>
